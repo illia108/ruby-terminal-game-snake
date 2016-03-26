@@ -35,50 +35,52 @@ class Snake
     @direction = direction
     
     # prevent moving backward
-    if @direction == 'left' && @current_direction == 'right'
-      @direction = 'right'
-    elsif @direction == 'right' && @current_direction == 'left'
+    if @direction == "left" && @current_direction == "right"
+      @direction = "right"
+    elsif @direction == "right" && @current_direction == "left"
       @direction = "left"
-    elsif @direction == 'up' && @current_direction == 'down'
-      @direction = 'down'
-    elsif @direction == 'down' && @current_direction == 'up'
-      @direction = 'up'
+    elsif @direction == "up" && @current_direction == "down"
+      @direction = "down"
+    elsif @direction == "down" && @current_direction == "up"
+      @direction = "up"
     end
     
     case @direction
-    when 'up'
+    when "up"
       # move head
       if @cells[@row_head - 1][@cell_head] == Field::BLACKSQ
         Func.game_over
       else
         @cells[@row_head - 1][@cell_head] = Field::BLACKSQ
         @snake.push('row' => @row_head - 1, 'cell' => @cell_head)
-        @current_direction = 'up'
+        @current_direction = "up"
       end
-    when 'down'
+    when "down"
+      
       if @cells[@row_head + 1][@cell_head] == Field::BLACKSQ
         Func.game_over
       else
         @cells[@row_head + 1][@cell_head] = Field::BLACKSQ
         @snake.push('row' => @row_head + 1, 'cell' => @cell_head)
-        @current_direction = 'down'
+        @current_direction = "down"
       end
-    when 'right'
+    when "right"
+
       if @cells[@row_head][@cell_head + 1] == Field::BLACKSQ
         Func.game_over
       else
         @cells[@row_head][@cell_head + 1] = Field::BLACKSQ
         @snake.push('row' => @row_head, 'cell' => @cell_head + 1)
-        @current_direction = 'right'
+        @current_direction = "right"
       end
-    when 'left'
+    when "left"
       
       if @cells[@row_head][@cell_head - 1] == Field::BLACKSQ
         Func.game_over
       else
         @cells[@row_head][@cell_head - 1] = Field::BLACKSQ
         @snake.push('row' => @row_head, 'cell' => @cell_head - 1)
-        @current_direction = 'left'
+        @current_direction = "left"
       end
     end
     

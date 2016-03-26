@@ -11,7 +11,7 @@ class Field
     @score = 0
   end
   
-  def create_field
+  def create_field()
     # populating two dimensional array
     @cells = []
     (0...@size).each do |x|
@@ -27,20 +27,16 @@ class Field
     end
   end
   
-  def print_field
-    # clear user terminal
-    system 'clear'
-    # terminal color -> green
-    print "\e[32m"
+  def print_field()
+    system 'clear' # clear user terminal
+    print "\e[32m" # terminal color -> green
     @cells.each do |row|
       row.each do |cell|
         print cell
       end
-      # !important - carriege return
-      print "\n\r"
+      print "\n\r" # !important - carriege return
     end
-    # text == black && background == green
-    puts "SCORE: \e[42m\e[30m #{@score} \e[49m\e[32m\r"
+    puts "SCORE: \e[42m\e[30m #{@score} \e[49m\e[32m\r" # text == black && background == green
     puts "Use \xe2\x87\x84 \xe2\x87\x85 to move, ESC to quit.\r"
   end
   
