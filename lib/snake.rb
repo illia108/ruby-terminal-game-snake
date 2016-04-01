@@ -1,5 +1,3 @@
-require './lib/functions.rb'
-
 class Snake
   def initialize(field, rabbit)
     @field = field
@@ -38,7 +36,7 @@ class Snake
     if @direction == 'left' && @current_direction == 'right'
       @direction = 'right'
     elsif @direction == 'right' && @current_direction == 'left'
-      @direction = "left"
+      @direction = 'left'
     elsif @direction == 'up' && @current_direction == 'down'
       @direction = 'down'
     elsif @direction == 'down' && @current_direction == 'up'
