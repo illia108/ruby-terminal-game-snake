@@ -26,64 +26,25 @@ class Snake
     @row_head = @snake[@snake.length - 1]['row']
     @cell_head = @snake[@snake.length - 1]['cell']
     
-    turning(@direction)
-  end
-  
-  def turning(direction)
-    @direction = direction
-    
     # prevent moving backward
-    if @direction == 'left' && @current_direction == 'right'
-      @direction = 'right'
-    elsif @direction == 'right' && @current_direction == 'left'
-      @direction = 'left'
-    elsif @direction == 'up' && @current_direction == 'down'
-      @direction = 'down'
-    elsif @direction == 'down' && @current_direction == 'up'
-      @direction = 'up'
+    if !@current_direction.nil?
+      if @direction['row'] == @current_direction['row'] * -1 || @direction['cell'] == @current_direction['cell'] * -1
+        @direction = @current_direction
+      end
     end
     
-    case @direction
-    when 'up'
-      # move head
-      if @cells[@row_head - 1][@cell_head] == Field::BLACKSQ
-        Func.game_over
-      else
-        @cells[@row_head - 1][@cell_head] = Field::BLACKSQ
-        @snake.push('row' => @row_head - 1, 'cell' => @cell_head)
-        @current_direction = 'up'
-      end
-    when 'down'
-      if @cells[@row_head + 1][@cell_head] == Field::BLACKSQ
-        Func.game_over
-      else
-        @cells[@row_head + 1][@cell_head] = Field::BLACKSQ
-        @snake.push('row' => @row_head + 1, 'cell' => @cell_head)
-        @current_direction = 'down'
-      end
-    when 'right'
-      if @cells[@row_head][@cell_head + 1] == Field::BLACKSQ
-        Func.game_over
-      else
-        @cells[@row_head][@cell_head + 1] = Field::BLACKSQ
-        @snake.push('row' => @row_head, 'cell' => @cell_head + 1)
-        @current_direction = 'right'
-      end
-    when 'left'
-      
-      if @cells[@row_head][@cell_head - 1] == Field::BLACKSQ
-        Func.game_over
-      else
-        @cells[@row_head][@cell_head - 1] = Field::BLACKSQ
-        @snake.push('row' => @row_head, 'cell' => @cell_head - 1)
-        @current_direction = 'left'
-      end
+    
+    if @cells[@row_head + @direction['row']][@cell_head + @direction['cell']] == Field::BLACKSQ
+      Func.game_over
+    else
+      @cells[@row_head + @direction['row']][@cell_head + @direction['cell']] = Field::BLACKSQ
+      @snake.push('row' => @row_head + @direction['row'], 'cell' => @cell_head + @direction['cell'])
+      @current_direction = @direction
     end
     
     # remove tail or eat rabbit
     if @row_head == @rabbit.location['row'] && @cell_head == @rabbit.location['cell']
-      @field.score += 1
-      
+      @field.score += 1 
       @rabbit.create_rabbit
     else
       @cells[@row_tail][@cell_tail] = Field::WHITESQ

@@ -4,7 +4,7 @@ require './lib/rabbit.rb'
 require './lib/functions.rb'
 require 'io/console'
 
-puts Func.get_direction
+# puts Func.get_direction
 
 field = Field.new(15) # size
 field.create_field()

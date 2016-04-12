@@ -1,7 +1,7 @@
 module Func
 
   # default snake direction
-  @direction = 'right'
+  @direction = {'row' => 0, 'cell' => 1}
 
   # catch user input (arrow keys and ESC)
   def Func.user_control
@@ -12,13 +12,13 @@ module Func
       
       case input
       when "\e[A" # up arrow
-        @direction = 'up'
+        @direction = {'row' => -1, 'cell' => 0}
       when "\e[B" # down arrow
-        @direction = 'down'
+        @direction = {'row' => 1, 'cell' => 0}
       when "\e[C" # right arrow
-        @direction = 'right'
+        @direction = {'row' => 0, 'cell' => 1}
       when "\e[D" # left arrow
-        @direction = 'left'
+        @direction = {'row' => 0, 'cell' => -1}
       when "\e"
         Func.game_over
       else
