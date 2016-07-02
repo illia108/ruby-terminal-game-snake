@@ -1,3 +1,4 @@
 # ruby-terminal-game-snake
-Simple terminal game written in pure Ruby.
-My first game :)
+<p>Simple terminal game written in pure Ruby.</p>
+<p>My first game :)</p>
+![alt tag](https://github.com/illia108/ruby-terminal-game-snake/blob/master/snake_illia108.gif)
