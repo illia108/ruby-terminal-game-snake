@@ -20,7 +20,7 @@ snake_thr = Thread.new do
   loop do
     snake.move(Func.get_direction)
     field.print_field
-    sleep(0.3) # speed
+    sleep(0.3) # snake's speed
   end
 end
 
